@@ -1,0 +1,10 @@
+.row
+  .col-md-8
+    hjkhjkh
+    -@projects.each do |project|
+      =project.name
+
+      %br
+  .col-md-4
+    = link_to "create project", new_project_path
+    %br

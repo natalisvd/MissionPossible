@@ -1,3 +1,34 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+html, body{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+body{
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.container_login_user{
+  width:100%;
+  height: 100%;
+  background-image: url('login.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  .login_user{
+    background: honeydew;
+    opacity: 0.6;
+    padding: 10px;
+    position: absolute;
+    left: 140px;
+    top: 90px;
+  }
+}
+.field input{
+  padding:5px;
+  margin: 10px;
+  border: 1px solid black;
+}
+
