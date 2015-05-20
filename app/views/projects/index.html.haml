@@ -1,8 +1,11 @@
 .row
   .col-md-8
-    hjkhjkh
+    %b Name
+    %br
     -@projects.each do |project|
-      =project.name
+      =link_to project.name, project_path(project)
+      .pull-right
+        ="Creator #{project.user.email}"
 
       %br
   .col-md-4

@@ -10,6 +10,10 @@ body{
   overflow-x: hidden;
   overflow-y: auto;
 }
+.navbar{
+  margin-bottom: 0 !important;
+}
+
 
 .container_login_user{
   width:100%;
@@ -31,4 +35,20 @@ body{
   margin: 10px;
   border: 1px solid black;
 }
+.row{
+  margin: 10px 10px 10px 10px !important;
+}
+#new_project{
+  background: honeydew;
+  opacity: 0.6;
+  padding: 10px;
+  position: absolute;
+  left: 190px;
+  top: 190px;
+}
+.cont{
+  width:100%;
+  height:100%;
+  background-image: url('login.jpg');
 
+}

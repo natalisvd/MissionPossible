@@ -18,8 +18,18 @@ class ProjectsController < ApplicationController
       flash[:error] = "Lol"
     end
   end
+  def add_member_to_project
+    if User.where(:email=> "#{params['email']}").length > 0 && Project.find(params['project_id']).user.email != params['email']
+      @add_user_to_project = UserToProject.create(user: User.where(:email=> "#{params['email']}").first, project_id: params['project_id'])
+      render :json => {a:"gh"}
+    else
+      p "sdfsdf"
+      render :json => {arrors: 'errors'}
+    end
+  end
+
   private
   def params_project
-    params.require(:project).permit( :name, :deskription )
+    params.require(:project).permit( :name, :description )
   end
 end

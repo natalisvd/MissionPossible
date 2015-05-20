@@ -10,8 +10,8 @@
       %nav.navbar.navbar-default
         .container-fluid
           .navbar-header
-            .navbar-text Mission Possible
+            .navbar-text
+              = link_to "Mission Possible", root_path
           .navbar-btn
             = link_to 'Log out', destroy_user_session_path, method: 'delete', class: 'pull-right btn btn-default'
-
     = yield

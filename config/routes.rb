@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :projects
+  resources :tasks
+  post 'projects/:id/member' => 'projects#add_member_to_project'
   root "projects#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

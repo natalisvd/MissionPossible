@@ -1,0 +1,32 @@
+.modal.task.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4.modal-title Create task
+      .modal-body
+        =form_for Task.new do |f|
+          .name_project
+            = f.text_field :title, placeholder: 'title'
+            %br
+            = f.text_field :description, placeholder: 'description'
+            %br
+            = f.select :requester_id do
+              -project.users.each do |user|
+                = content_tag(:option, user.email, value: user.id)
+              =content_tag(:option, project.user.email, value: project.user.id )
+            %br
+            = f.select :status do
+              =content_tag(:option, 'new', value: 'new')
+              =content_tag(:option, 'started', value: 'started')
+              =content_tag(:option, 'delivered', value: 'delivered')
+              =content_tag(:option, 'rejected', value: 'rejected')
+              =content_tag(:option, 'closed', value: 'closed')
+            =f.hiden_field
+
+          %br
+          =f.submit
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+        %button.btn.btn-primary.confirm_task{:type => "button"} Save changes

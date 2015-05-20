@@ -1,3 +1,33 @@
-=@project.name
-=@project.description
-=link_to 'create_task',
+.col-md-4
+  %b
+    Project Name
+  %br
+  =@project.name
+  %br
+  %br
+  %b
+    Project Description
+  %br
+  =@project.description
+.col-md-4
+  %b
+    Tasks
+  %br
+
+.col-md-4
+  %br
+  =link_to '+ Member', '#', :class=> 'add_member'
+  %br
+  =link_to 'Create Task', '#', :class=> 'create_task'
+  %br
+  %br
+  %b
+    Member
+  %br
+  =@project.user.email
+  %br
+  - @project.users.each do |user|
+    =user.email
+  %br
+=render 'task_modal', project: @project
+=render 'member_modal', project: @project
