@@ -1,4 +1,4 @@
-.col-md-4
+.col-md-3
   %b
     Project Name
   %br
@@ -9,11 +9,38 @@
     Project Description
   %br
   =@project.description
-.col-md-4
+.col-md-5
   %b
     Tasks
   %br
+  .row
+    .lvl0.task
 
+      .col-md-3
+        %b
+          Title
+      .col-md-4
+        %b
+          Requestor
+      .col-md-2
+        %b
+          Status
+      .col-md-3
+
+      %br
+    - if @project.tasks
+      - iterrate_tasks(@first_level_tasks) do |task, level|
+        .task
+          .col-md-3
+            =link_to task.title, task_path(task.id)
+          .col-md-4
+            =task.requester.email
+          .col-md-2
+            =task.status
+          .col-md-3
+            =link_to 'Create Task', '#', :class=> 'create_task_to_task', "data-task"=>task.id
+          %br
+          -#.task{:class=>"lvl#{level}"}
 .col-md-4
   %br
   =link_to '+ Member', '#', :class=> 'add_member'
@@ -26,8 +53,8 @@
   %br
   =@project.user.email
   %br
-  - @project.users.each do |user|
-    =user.email
+  - @project.user_to_projects.joins(:user).each do |user|
+    =user.user.email
   %br
 =render 'task_modal', project: @project
 =render 'member_modal', project: @project

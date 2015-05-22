@@ -4,9 +4,15 @@
 $(document).ready ->
   $('.create_task').click ->
     $('.modal.task').modal()
+  $('.create_task_to_task').click (e) ->
+    $('.task #task_parent_id').val($(e.currentTarget).data('task'))
+    $('.modal.task').modal()
 
   $('.add_member').click ->
     $('.modal.member').modal()
+
+  $('.edit_task').click ->
+    $('.modal.edit_task').modal()
 
 
 
@@ -23,3 +29,4 @@ $(document).ready ->
         project_id: project_id
     ).done (response) ->
       console.log response
+      window.location = "/projects/#{project_id}"

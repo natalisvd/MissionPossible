@@ -1,0 +1,22 @@
+
+%b
+  = "Title: #{@task.title}"
+%br
+= "Description: #{@task.description}"
+%br
+= "Requester: #{@task.requester.email}"
+%br
+= "Owner: #{@task.owner.email}"
+%br
+- if current_user == @task.requester|| @task.owner
+  =link_to 'Edit task', edit_task_path(@task.id)
+%br
+-@task.children.each do |task|
+  = "Title: #{task.title}"
+  %br
+  = "Description: #{task.description}"
+  %br
+  = "Requester: #{task.requester.email}"
+  
+  = "Owner: #{task.owner.email}"
+

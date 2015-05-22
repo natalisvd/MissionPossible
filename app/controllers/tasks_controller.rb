@@ -9,17 +9,29 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
   end
+  def edit
+    @task = Task.find(params[:id])
+  end
   def create
-    @task = Task.create()
+    @task = Task.create(params_task)
     if @task.save
       redirect_to :back
-      flash[:success] = "Project created!"
+      flash[:success] = "task created!"
+    else
+      flash[:error] = "Lol"
+    end
+  end
+  def update
+    @task = Task.find(params[:id])
+    if @task.update(params_task)
+      redirect_to  project_path(@task.project_id)
+      flash[:success] = "update!"
     else
       flash[:error] = "Lol"
     end
   end
   private
   def params_task
-    params.require(:task).permit(:title, :description, :status, :requester_id)
+    params.require(:task).permit(:title, :description, :status, :requester_id, :parent_id, :owner_id, :project_id)
   end
 end

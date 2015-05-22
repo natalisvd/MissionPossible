@@ -1,0 +1,21 @@
+=form_for @task, html: { method: :put } do |f|
+  .name_project
+    = f.text_field :title, placeholder: 'title'
+    %br
+    = f.text_field :description, placeholder: 'description'
+    %br
+    = f.select :requester_id do
+      -@task.project.user_to_projects.joins(:user).each do |user|
+        = content_tag(:option, user.user.email, value: user.user.id)
+      =content_tag(:option, @task.project.user.email, value: @task.project.user.id )
+    %br
+    = f.select :status do
+      =content_tag(:option, 'new', value: 'new')
+      =content_tag(:option, 'started', value: 'started')
+      =content_tag(:option, 'delivered', value: 'delivered')
+      =content_tag(:option, 'rejected', value: 'rejected')
+      =content_tag(:option, 'closed', value: 'closed')
+    = f.hidden_field :owner_id, value: current_user.id
+    = f.hidden_field :parent_id, value: ''
+  %br
+  =f.submit

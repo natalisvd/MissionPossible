@@ -13,8 +13,8 @@
             = f.text_field :description, placeholder: 'description'
             %br
             = f.select :requester_id do
-              -project.users.each do |user|
-                = content_tag(:option, user.email, value: user.id)
+              -project.user_to_projects.joins(:user).each do |user|
+                = content_tag(:option, user.user.email, value: user.user.id)
               =content_tag(:option, project.user.email, value: project.user.id )
             %br
             = f.select :status do
@@ -23,10 +23,10 @@
               =content_tag(:option, 'delivered', value: 'delivered')
               =content_tag(:option, 'rejected', value: 'rejected')
               =content_tag(:option, 'closed', value: 'closed')
-            =f.hiden_field
-
+            = f.hidden_field :owner_id, value: current_user.id
+            = f.hidden_field :project_id, value: project.id
+            = f.hidden_field :parent_id, value: ''
           %br
-          =f.submit
-      .modal-footer
-        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
-        %button.btn.btn-primary.confirm_task{:type => "button"} Save changes
+          =f.submit(class: 'btn btn-primary confirm_task')
+
+          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
