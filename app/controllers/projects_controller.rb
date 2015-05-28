@@ -3,6 +3,7 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!
   def index
   @projects = current_user.projects
+    @project_member = current_user.user_to_projects.joins(:project)
   end
   def new
     @project = Project.new

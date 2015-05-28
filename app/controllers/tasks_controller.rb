@@ -15,7 +15,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.create(params_task)
     if @task.save
-      redirect_to :back
+      redirect_to  task_path(@task)
       flash[:success] = "task created!"
     else
       flash[:error] = "Lol"
@@ -24,7 +24,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update(params_task)
-      redirect_to  project_path(@task.project_id)
+      redirect_to  task_path(@task)
       flash[:success] = "update!"
     else
       flash[:error] = "Lol"

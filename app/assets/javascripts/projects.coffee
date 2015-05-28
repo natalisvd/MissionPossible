@@ -9,6 +9,7 @@ $(document).ready ->
     $('.modal.task').modal()
 
   $('.add_member').click ->
+    $('.modal.member input').val('')
     $('.modal.member').modal()
 
   $('.edit_task').click ->

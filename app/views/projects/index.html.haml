@@ -1,13 +1,23 @@
-.row
-  .col-md-8
-    %b Name
-    %br
-    -@projects.each do |project|
-      =link_to project.name, project_path(project)
+.all_proj
+  .row
+    .col-md-8
+      %b Name
       .pull-right
-        ="Creator #{project.user.email}"
-
+        %b
+          Creator
       %br
-  .col-md-4
-    = link_to "create project", new_project_path
-    %br
+      -@projects.each do |project|
+        =link_to project.name, project_path(project)
+        .pull-right
+          =" #{project.user.email}"
+
+        %br
+      -@project_member.each do |project|
+        =link_to project.project.name, project_path(project)
+        .pull-right
+          ="#{project.project.user.email}"
+
+        %br
+    .col-md-4
+      = link_to "create project", new_project_path, :class => 'Proj_create'
+      %br

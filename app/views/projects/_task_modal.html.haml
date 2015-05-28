@@ -10,7 +10,7 @@
           .name_project
             = f.text_field :title, placeholder: 'title'
             %br
-            = f.text_field :description, placeholder: 'description'
+            = f.text_area :description, placeholder: 'description', size: '60x12'
             %br
             = f.select :requester_id do
               -project.user_to_projects.joins(:user).each do |user|

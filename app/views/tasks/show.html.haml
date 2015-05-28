@@ -1,22 +1,33 @@
-
-%b
-  = "Title: #{@task.title}"
-%br
-= "Description: #{@task.description}"
-%br
-= "Requester: #{@task.requester.email}"
-%br
-= "Owner: #{@task.owner.email}"
-%br
-- if current_user == @task.requester|| @task.owner
-  =link_to 'Edit task', edit_task_path(@task.id)
-%br
--@task.children.each do |task|
-  = "Title: #{task.title}"
+.proj
+  %b
+    = "Title: #{@task.title}"
   %br
-  = "Description: #{task.description}"
+  = "Description: #{@task.description}"
   %br
-  = "Requester: #{task.requester.email}"
-  
-  = "Owner: #{task.owner.email}"
+  = "Requester: #{@task.requester.email}"
+  %br
+  = "Owner: #{@task.owner.email}"
+  %br
+  = "Status: #{@task.status}"
+  %br
+  - if current_user == @task.requester|| @task.owner
+    =link_to 'Edit task', edit_task_path(@task.id)
+    %br
+    =link_to 'Create Task', '#', :class=> 'create_task_to_task', "data-task"=>@task.id
 
+  %br
+  .task_child
+    -@task.children.each do |task|
+      .children
+        = "Title:"
+        =link_to task.title, task_path(task)
+        %br
+        = "Description: #{task.description}"
+        %br
+        = "Requester: #{task.requester.email}"
+        %br
+        = "Status: #{task.status}"
+        %br
+        = "Owner: #{task.owner.email}"
+
+  =render 'projects/task_modal', project: @task.project

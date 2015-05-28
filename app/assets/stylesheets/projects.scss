@@ -56,9 +56,41 @@ body{
   border: 1px solid black;
   margin: -1px;
 }
+.form_task{
+  top: 50px;
+  left: 200px;
+  position: absolute;
+}
+.task_child{
+  margin-left: 200px;
+}
+.children{
+  border: 1px solid #31b0d5;
+}
+.all_proj {
+  background: url('hq-wallpapers_ru_abstraction3d_875_1920x1200.jpg');
+  height: 100%;
+  margin-top: -10px;
+  width: 100%;
+  font-family: "Comic Sans MS";
+  font-size: 1.3em;
+}
+.proj {
+  background: url('hq-wallpapers_ru_abstraction3d_875_1920x1200.jpg');
+  height: 100%;
+
+  width: 100%;
+  font-family: "Comic Sans MS";
+//  font-size: 1.3em;
+}
 
 .lvl1{padding-left: 5px !important;}
 .lvl2{padding-left: 10px !important;}
 .lvl3{padding-left: 15px !important;}
 .lvl4{padding-left: 20px !important;}
 .lvl5{padding-left: 25px !important;}
+.Proj_create {
+  color: forestgreen;
+  font-size: 1.5em;
+  text-decoration: underline;
+}
